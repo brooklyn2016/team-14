@@ -31,7 +31,9 @@
             startRecording();
         } else {
             document.getElementById('recordButton').className = "fa fa-microphone";
+            // timer for demo
             window.setTimeOut(stopRecording(), 2000);
+            // stopRecording();
         }
 
     }
@@ -89,6 +91,7 @@
     function stopRecording() {
         recorder.stop();
         recorder.exportWAV(function(s) {
+          // comment this next line, only used for demo for speed up
             window.location.replace("results.html?translation=" + "Appa");
             var url = window.URL.createObjectURL(s);
             audio.src = url
