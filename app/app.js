@@ -4,7 +4,7 @@ var app = express();
 var fs = require('fs'),
     obj
 fs.readFile('data/input.json', convertSpeech)
-
+fs.readFile('../dictionary.json', convertSpeech2)
 
 function convertSpeech(err, data) {
     if (err) throw err
@@ -12,6 +12,13 @@ function convertSpeech(err, data) {
     transcript = obj.results[0].alternatives[0].transcript
     console.log(transcript);
     // You can now play with your datas
+}
+
+function convertSpeech2(err, data) {
+    if (err) throw err
+    obj = JSON.parse(data)
+    transcript = obj.Eric.abbaa.apple
+    console.log(transcript);
 }
 
 app.get('/', function (req, res) {
