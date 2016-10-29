@@ -40,6 +40,8 @@
         recorder.stop();
         recorder.exportWAV(function(s) {
             audio.src = window.URL.createObjectURL(s);
+            console.log(audio.src);
+            //do stuff with the blob
         });
 
     }
