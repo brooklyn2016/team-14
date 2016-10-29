@@ -41,18 +41,12 @@
         recorder.exportWAV(function(s) {
             audio.src = window.URL.createObjectURL(s);
             console.log(audio.src);
-            var fd = new FormData();
-            fd.append('fname', 'test.wav');
-            fd.append('data', audio.src);
-            $.ajax({
-                type: 'POST',
-                url: '/upload.php',
-                data: fd,
-                processData: false,
-                contentType: false
-            }).done(function(data) {
-                console.log(data);
-            });
+        });
+        window.location.replace("results");
+        audio = document.querySelector('audio');
+        recorder.exportWAV(function(s) {
+            audio.src = window.URL.createObjectURL(s);
+            console.log(audio.src);
         });
 
     }
