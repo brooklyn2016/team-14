@@ -25,6 +25,7 @@
     "url": "https://github.com/BlackrockDigital/startbootstrap-grayscale.git"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "waveform-data": "^1.5.3"
   }
 }

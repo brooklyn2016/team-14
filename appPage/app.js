@@ -8,12 +8,18 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var test = require('./routes/test');
 var users = require('./routes/users');
+var results = require('.routes/users');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// set up POST data retrieval
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -25,7 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/test', test)
+app.use('/test', test);
+app.use('/results', result)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
