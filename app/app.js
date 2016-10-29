@@ -6,11 +6,17 @@ var fs = require('fs'),
 fs.readFile('data/input.json', convertSpeech)
 fs.readFile('../dictionary.json', convertSpeech2)
 
+var filepath = 'data/input.json'
+
+fs.readFile(filepath, convertSpeech)
+
 function convertSpeech(err, data) {
     if (err) throw err
     obj = JSON.parse(data)
     transcript = obj.results[0].alternatives[0].transcript
+    confidence = obj.results[0].alternatives[0].confidence
     console.log(transcript);
+    console.log(confidence);
     // You can now play with your datas
 }
 
