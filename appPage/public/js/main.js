@@ -31,7 +31,7 @@
             startRecording();
         } else {
             document.getElementById('recordButton').className = "fa fa-microphone";
-            stopRecording();
+            window.setTimeOut(stopRecording(), 2000);
         }
 
     }
@@ -89,6 +89,7 @@
     function stopRecording() {
         recorder.stop();
         recorder.exportWAV(function(s) {
+            window.location.replace("results.html?translation=" + "Appa");
             var url = window.URL.createObjectURL(s);
             audio.src = url
             console.log(audio.src);
