@@ -51,21 +51,22 @@ html(lang='en')
               //- audio(controls='', autoplay='')
               .row
                 .col-xs-6.col-xs-offset-3
-                  p.text-left
-                    a(href='/')
-                      span.glyphicon.glyphicon-ok(aria-hidden='true')
-                    | &nbsp;Apple
-                  p.text-left
-                    a(href='/')
-                      span.glyphicon.glyphicon-ok(aria-hidden='true')
-                    | &nbsp;I want apple
+                  if suggestions.length == 0
+                    p.text-left
+                      | This seems to be a new word...
+                  each item in suggestions
+                    if item.length > 0
+                      p.text-left
+                        a(href='/')
+                          span.glyphicon.glyphicon-ok(aria-hidden='true')
+                        | &nbsp;#{item}
               .row
                 br
                 br
                 .col-xs-6.col-xs-offset-3
-                  .form-group.row
-                    input#example-text-input.form-control(type='text')
-                  .btn.btn-default(href='#', role='button') Make a suggestion
+                  input#suggestion.form-control(type='text')
+                  br
+                  .btn.btn-default(onclick="submitSugg()" value="Make a Suggestion") Make a Suggestion
 
 
               //
@@ -81,6 +82,7 @@ html(lang='en')
     script(src='js/jquery.js')
     // Bootstrap Core JavaScript
     script(src='js/bootstrap.min.js')
+    script(src='js/submit.js')
     // Plugin JavaScript
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
     // Theme JavaScript

@@ -13,7 +13,15 @@ router.get('/', function(req, res, next) {
 router.get('/results.html', function(req, res, next) {
   var view = 'results.html'
   // res.sendFile(path.join(__dirname, '../views', view))
-  res.render('results', { url: req.param('translation') });
+  var fs = require('fs');
+  var array = fs.readFileSync('dict.txt').toString().split("\n");
+  for(i in array) {
+      console.log(array[i]);
+  }
+  res.render('results', {
+    url: req.params.translation,
+    suggestions: array
+  });
 });
 
 router.post('/parse', function(req, res, next) {
@@ -47,6 +55,17 @@ router.post('/parse', function(req, res, next) {
   //   }
   //   console.log(`Transcription: ${result}`);
   // };
+});
+
+router.get('/submit.html', function(req, res, next) {
+  var view = 'index.html'
+  // res.sendFile(path.join(__dirname, '../views', view))
+  var fs = require('fs');
+  console.log(req);
+  var suggestion = req.query.suggestion;
+  fs.appendFile('dict.txt', '\n'+suggestion, function (err) {});
+  // var array = fs.readFileSync('dict.txt').toString().split("\n");
+  res.sendFile(path.join(__dirname, '../views', view))
 });
 
 module.exports = router;
