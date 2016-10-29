@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 router.get('/results.html', function(req, res, next) {
   var view = 'results.html'
   // res.sendFile(path.join(__dirname, '../views', view))
-  res.render('results', { url: req.param('url') });
+  res.render('results', { url: req.param('translation') });
 });
 
 router.post('/parse', function(req, res, next) {
@@ -31,7 +31,7 @@ router.post('/parse', function(req, res, next) {
     content: req.body.base64.split(',')[1]
   };
   // console.log(req.body.base64.split(',')[1])
-  speech.recognize(file, config, (err, result, apiResponse) => {
+  speech.recognize(file, config, function (err, response, apiResponse) {
     if (err) {
       console.error(err);
       return;

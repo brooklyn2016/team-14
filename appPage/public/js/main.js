@@ -104,7 +104,7 @@
                       base64: base64data
                     },
                     success: function(response) {
-                        window.location.replace("results.html?url=" + "Appa");
+                        window.location.replace("results.html?translation=" + "Appa");
                     }
                 });
                 // var speech = require('@google-cloud/speech')({
