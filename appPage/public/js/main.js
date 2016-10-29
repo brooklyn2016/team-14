@@ -36,12 +36,28 @@
 
     }
 
+    // function upload(blobOrFile) {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open('POST', '/upload.aspx', true);
+    //     xhr.onload = function (e) {
+    //         var result = e.target.result;
+    //     };
+    //
+    //     xhr.send(blobOrFile);
+    // }
+
     function stopRecording() {
         recorder.stop();
         recorder.exportWAV(function(s) {
             var url = window.URL.createObjectURL(s);
             audio.src = url
             console.log(audio.src);
+            // audio.src = url;
+            // audio.controls = true;
+            // var hf = document.createElement('a');
+            // hf.href = url;
+            // hf.download = new Date().toISOString() + '.wav';
+            // upload(s);
             window.location.replace("results.html?url=" + url);
         });
         // window.location.replace("results");

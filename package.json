@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "google-cloud": "^0.43.0",
+    "googleapis": "^14.1.0",
     "waveform-data": "^1.5.3"
   }
 }
