@@ -15,6 +15,7 @@ html(lang='en')
     link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
     // Theme CSS
     link(href='css/grayscale.min.css', rel='stylesheet')
+    link(href='css/custom.css', rel='stylesheet')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     // WARNING: Respond.js doesn't work if you view the page via file://
     //if lt IE 9
@@ -47,10 +48,26 @@ html(lang='en')
           .row
             .col-md-8.col-md-offset-2
               h1(style='font-size:72px') Did You Mean?
-              audio(controls='', autoplay='')
-              p #{translation}
-              p Apple
-              p I want apple
+              //- audio(controls='', autoplay='')
+              .row
+                .col-xs-6.col-xs-offset-3
+                  p.text-left
+                    a(href='/')
+                      span.glyphicon.glyphicon-ok(aria-hidden='true')
+                    | &nbsp;Apple
+                  p.text-left
+                    a(href='/')
+                      span.glyphicon.glyphicon-ok(aria-hidden='true')
+                    | &nbsp;I want apple
+              .row
+                br
+                br
+                .col-xs-6.col-xs-offset-3
+                  .form-group.row
+                    input#example-text-input.form-control(type='text')
+                  .btn.btn-default(href='#', role='button') Make a suggestion
+
+
               //
                 <a onclick="toggleRecording()" href="#" class="btn btn-circle">
                 <i id="recordButton" class="fa fa-microphone animated"></i>
@@ -59,7 +76,7 @@ html(lang='en')
     // Footer
     footer
       .container.text-center
-        p Copyright © Your Website 2016
+        p Copyright © Eden II 2016
     // jQuery
     script(src='js/jquery.js')
     // Bootstrap Core JavaScript
