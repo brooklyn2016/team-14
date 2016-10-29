@@ -15,12 +15,15 @@ router.get('/results.html', function(req, res, next) {
   // res.sendFile(path.join(__dirname, '../views', view))
   var fs = require('fs');
   var array = fs.readFileSync('dict.txt').toString().split("\n");
+  var cleaned = new Array();
   for(i in array) {
-      console.log(array[i]);
+      if (array[i].length > 0) {
+        cleaned.push(array[i]);
+      }
   }
   res.render('results', {
     url: req.params.translation,
-    suggestions: array
+    suggestions: cleaned
   });
 });
 
