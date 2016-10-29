@@ -36,14 +36,28 @@
 
     }
 
-    // function upload(blobOrFile) {
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open('POST', '/upload.aspx', true);
-    //     xhr.onload = function (e) {
-    //         var result = e.target.result;
-    //     };
+    // function apiCall(file) {
+    //   var google = require('googleapis');
+    //   var speech = google.speech('v1beta1');
+    //   const Speech = require('@google-cloud/speech');
+    //   const projectId = 'model-gearing-147900';
+    //   const speechClient = Speech({
+    //     projectId: projectId
+    //   });
     //
-    //     xhr.send(blobOrFile);
+    //   var reqBody {
+    //     "config" = {
+    //       encoding: 'LINEAR16',
+    //       sampleRate: 16000
+    //     },
+    //     "audio": {
+    //       content: file
+    //     }
+    //   }
+    //
+    //   var API_KEY = 'AIzaSyDrmdqSUrAyiEpjGIr5qGZx6bIBED-z5Fs';
+    //
+    //
     // }
 
     function stopRecording() {
@@ -52,13 +66,48 @@
             var url = window.URL.createObjectURL(s);
             audio.src = url
             console.log(audio.src);
+            var reader = new window.FileReader();
+            reader.readAsDataURL(s);
+            reader.onloadend = function() {
+                base64data = reader.result;
+                $.ajax({
+                    type: 'post',
+                    url: 'parse',
+                    data: {
+                      base64: base64data
+                    },
+                    success: function(response) {
+                        alert(response);
+                    }
+                });
+                // var speech = require('@google-cloud/speech')({
+                //   projectId: 'model-gearing-147900',
+                //   keyFilename: 'keyfile.json'
+                // });
+                // var config = {
+                //   encoding: 'LINEAR16',
+                //   sampleRate: 16000
+                // };
+                // var file = {
+                //   content: base64data
+                // };
+                // speech.recognize(file, config, (err, result) => {
+                //   if (err) {
+                //     console.error(err);
+                //     return;
+                //   }
+                //   console.log(`Transcription: ${result}`);
+                // };
+
+                // console.log(base64data);
+            }
             // audio.src = url;
             // audio.controls = true;
             // var hf = document.createElement('a');
             // hf.href = url;
             // hf.download = new Date().toISOString() + '.wav';
             // upload(s);
-            window.location.replace("results.html?url=" + url);
+            // window.location.replace("results.html?url=" + url);
         });
         // window.location.replace("results");
         // audio = document.querySelector('audio');

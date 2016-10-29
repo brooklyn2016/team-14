@@ -16,4 +16,33 @@ router.get('/results.html', function(req, res, next) {
   res.render('results', { url: req.param('url') });
 });
 
+router.post('/parse', function(req, res, next) {
+  var speech = require('@google-cloud/speech')({
+    projectId: 'model-gearing-147900',
+    keyFilename: 'keyfile.json'
+  });
+  // console.dir(req);
+  var config = {
+    encoding: 'LINEAR16',
+    sampleRate: 16000
+  };
+  var file = {
+    content: req.body.base64
+  };
+  speech.recognize(file, config, (err, result) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(result);
+  });
+  // speech.recognize(file, config, (err, result) => {
+  //   if (err) {
+  //     console.error(err);
+  //     return;
+  //   }
+  //   console.log(`Transcription: ${result}`);
+  // };
+});
+
 module.exports = router;
