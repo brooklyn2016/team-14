@@ -41,4 +41,6 @@
         recorder.exportWAV(function(s) {
             audio.src = window.URL.createObjectURL(s);
         });
+
     }
+    
