@@ -60,6 +60,32 @@
     //
     // }
 
+    // function downsampleBuffer(buffer, rate) {
+    //     if (rate == sampleRate) {
+    //         return buffer;
+    //     }
+    //     if (rate > sampleRate) {
+    //         throw "downsampling rate show be smaller than original sample rate";
+    //     }
+    //     var sampleRateRatio = sampleRate / rate;
+    //     var newLength = Math.round(buffer.length / sampleRateRatio);
+    //     var result = new Float32Array(newLength);
+    //     var offsetResult = 0;
+    //     var offsetBuffer = 0;
+    //     while (offsetResult < result.length) {
+    //         var nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+    //         var accum = 0, count = 0;
+    //         for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+    //             accum += buffer[i];
+    //             count++;
+    //         }
+    //         result[offsetResult] = accum / count;
+    //         offsetResult++;
+    //         offsetBuffer = nextOffsetBuffer;
+    //     }
+    //     return result;
+    // }
+
     function stopRecording() {
         recorder.stop();
         recorder.exportWAV(function(s) {
@@ -68,6 +94,7 @@
             console.log(audio.src);
             var reader = new window.FileReader();
             reader.readAsDataURL(s);
+            // reader.readAsArrayBuffer(s);
             reader.onloadend = function() {
                 base64data = reader.result;
                 $.ajax({
@@ -77,7 +104,7 @@
                       base64: base64data
                     },
                     success: function(response) {
-                        alert(response);
+                        window.location.replace("results.html?url=" + "Appa");
                     }
                 });
                 // var speech = require('@google-cloud/speech')({

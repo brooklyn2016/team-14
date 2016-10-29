@@ -24,17 +24,21 @@ router.post('/parse', function(req, res, next) {
   // console.dir(req);
   var config = {
     encoding: 'LINEAR16',
-    sampleRate: 16000
+    sampleRate: 16000,
+    verbose: true
   };
   var file = {
-    content: req.body.base64
+    content: req.body.base64.split(',')[1]
   };
-  speech.recognize(file, config, (err, result) => {
+  // console.log(req.body.base64.split(',')[1])
+  speech.recognize(file, config, (err, result, apiResponse) => {
     if (err) {
       console.error(err);
       return;
     }
-    console.log(result);
+    console.log(apiResponse);
+    res.end('{"success" : "Updated Successfully", "status" : 200}');
+    // res.render('results', { url: "maybe try again?"});
   });
   // speech.recognize(file, config, (err, result) => {
   //   if (err) {
