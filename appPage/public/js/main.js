@@ -39,14 +39,16 @@
     function stopRecording() {
         recorder.stop();
         recorder.exportWAV(function(s) {
-            audio.src = window.URL.createObjectURL(s);
+            var url = window.URL.createObjectURL(s);
+            audio.src = url
             console.log(audio.src);
+            window.location.replace("results.html?url=" + url);
         });
-        window.location.replace("results");
-        audio = document.querySelector('audio');
-        recorder.exportWAV(function(s) {
-            audio.src = window.URL.createObjectURL(s);
-            console.log(audio.src);
-        });
+        // window.location.replace("results");
+        // audio = document.querySelector('audio');
+        // recorder.exportWAV(function(s) {
+        //     audio.src = window.URL.createObjectURL(s);
+        //     console.log(audio.src);
+        // });
 
     }

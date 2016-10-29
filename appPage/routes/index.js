@@ -10,10 +10,10 @@ router.get('/', function(req, res, next) {
   // res.render('index', { title: 'Express' });
 });
 
-router.get('/results', function(req, res, next) {
+router.get('/results.html', function(req, res, next) {
   var view = 'results.html'
-  res.sendFile(path.join(__dirname, '../views', view))
-  // res.render('index', { title: 'Express' });
+  // res.sendFile(path.join(__dirname, '../views', view))
+  res.render('results', { url: req.param('url') });
 });
 
 module.exports = router;
